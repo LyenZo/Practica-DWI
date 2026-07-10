@@ -1,57 +1,58 @@
-const daySelect = document.getElementById('day');
-const monthSelect = document.getElementById('month');
-const yearSelect = document.getElementById('year');
-const months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const selectDia = document.getElementById('dia');
+const selectMes = document.getElementById('mes');
+const selectAnio = document.getElementById('anio');
+const nombresMeses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
+// Genera opciones de día, mes y año
 for (let d = 1; d <= 31; d++) {
-  const opt = document.createElement('option');
-  opt.value = d;
-  opt.textContent = d;
-  daySelect.appendChild(opt);
+  const opcion = document.createElement('option');
+  opcion.value = d;
+  opcion.textContent = d;
+  selectDia.appendChild(opcion);
 }
 
-months.forEach((m, i) => {
-  const opt = document.createElement('option');
-  opt.value = i + 1;
-  opt.textContent = m;
-  monthSelect.appendChild(opt);
+nombresMeses.forEach((nombreMes, indice) => {
+  const opcion = document.createElement('option');
+  opcion.value = indice + 1;
+  opcion.textContent = nombreMes;
+  selectMes.appendChild(opcion);
 });
 
-const currentYear = new Date().getFullYear();
-for (let y = currentYear; y >= currentYear - 120; y--) {
-  const opt = document.createElement('option');
-  opt.value = y;
-  opt.textContent = y;
-  yearSelect.appendChild(opt);
+const anioActual = new Date().getFullYear();
+for (let a = anioActual; a >= anioActual - 120; a--) {
+  const opcion = document.createElement('option');
+  opcion.value = a;
+  opcion.textContent = a;
+  selectAnio.appendChild(opcion);
 }
 
-document.getElementById('ageBtn').addEventListener('click', () => {
-  const day = parseInt(daySelect.value);
-  const month = parseInt(monthSelect.value);
-  const year = parseInt(yearSelect.value);
-  const resultDiv = document.getElementById('ageResult');
-  const daysInMonth = new Date(year, month, 0).getDate();
+document.getElementById('btnCalcularEdad').addEventListener('click', () => {
+  const dia = parseInt(selectDia.value);
+  const mes = parseInt(selectMes.value);
+  const anio = parseInt(selectAnio.value);
+  const divResultado = document.getElementById('resultadoEdad');
+  const diasEnElMes = new Date(anio, mes, 0).getDate();
 
-  if (day > daysInMonth) {
-    resultDiv.className = 'result error';
-    resultDiv.textContent = 'Fecha inválida para el mes seleccionado';
+  if (dia > diasEnElMes) {
+    divResultado.className = 'result error';
+    divResultado.textContent = 'Fecha inválida para el mes seleccionado';
     return;
   }
 
-  const birthDate = new Date(year, month - 1, day);
-  const today = new Date();
+  const fechaNacimiento = new Date(anio, mes - 1, dia);
+  const hoy = new Date();
 
-  if (birthDate > today) {
-    resultDiv.className = 'result error';
-    resultDiv.textContent = 'La fecha no puede ser futura';
+  if (fechaNacimiento > hoy) {
+    divResultado.className = 'result error';
+    divResultado.textContent = 'La fecha no puede ser futura';
     return;
   }
 
-  let years = today.getFullYear() - birthDate.getFullYear();
-  let monthsDiff = today.getMonth() - birthDate.getMonth();
-  if (today.getDate() < birthDate.getDate()) monthsDiff--;
-  if (monthsDiff < 0) { years--; monthsDiff += 12; }
+  let anios = hoy.getFullYear() - fechaNacimiento.getFullYear();
+  let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+  if (hoy.getDate() < fechaNacimiento.getDate()) diferenciaMeses--;
+  if (diferenciaMeses < 0) { anios--; diferenciaMeses += 12; }
 
-  resultDiv.className = 'result';
-  resultDiv.innerHTML = `Tienes <strong>${years} años y ${monthsDiff} meses</strong>`;
+  divResultado.className = 'result';
+  divResultado.innerHTML = `Tienes <strong>${anios} años y ${diferenciaMeses} meses</strong>`;
 });

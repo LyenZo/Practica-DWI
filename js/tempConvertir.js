@@ -1,35 +1,36 @@
-const tempValue = document.getElementById('tempValue');
-const fromUnit = document.getElementById('fromUnit');
-const toUnit = document.getElementById('toUnit');
-const convertBtn = document.getElementById('convertBtn');
-const tempResult = document.getElementById('tempResult');
+const valorTemp = document.getElementById('valorTemp');
+const unidadOrigen = document.getElementById('unidadOrigen');
+const unidadDestino = document.getElementById('unidadDestino');
+const btnConvertir = document.getElementById('btnConvertir');
+const resultadoTemp = document.getElementById('resultadoTemp');
 
-function checkTempFields() {
-  convertBtn.disabled = !(tempValue.value.trim() !== '' && fromUnit.value !== '' && toUnit.value !== '');
+// Habilita el botón solo si los 3 campos están llenos
+function verificarCampos() {
+  btnConvertir.disabled = !(valorTemp.value.trim() !== '' && unidadOrigen.value !== '' && unidadDestino.value !== '');
 }
 
-tempValue.addEventListener('input', checkTempFields);
-fromUnit.addEventListener('change', checkTempFields);
-toUnit.addEventListener('change', checkTempFields);
+valorTemp.addEventListener('input', verificarCampos);
+unidadOrigen.addEventListener('change', verificarCampos);
+unidadDestino.addEventListener('change', verificarCampos);
 
-function toCelsius(value, unit) {
-  if (unit === 'C') return value;
-  if (unit === 'F') return (value - 32) * 5 / 9;
-  if (unit === 'K') return value - 273.15;
+function aCelsius(valor, unidad) {
+  if (unidad === 'C') return valor;
+  if (unidad === 'F') return (valor - 32) * 5 / 9;
+  if (unidad === 'K') return valor - 273.15;
 }
 
-function fromCelsius(value, unit) {
-  if (unit === 'C') return value;
-  if (unit === 'F') return value * 9 / 5 + 32;
-  if (unit === 'K') return value + 273.15;
+function desdeCelsius(valor, unidad) {
+  if (unidad === 'C') return valor;
+  if (unidad === 'F') return valor * 9 / 5 + 32;
+  if (unidad === 'K') return valor + 273.15;
 }
 
-const unitNames = { C: 'Celsius', F: 'Fahrenheit', K: 'Kelvin' };
+const nombresUnidades = { C: 'Celsius', F: 'Fahrenheit', K: 'Kelvin' };
 
-convertBtn.addEventListener('click', () => {
-  const value = parseFloat(tempValue.value);
-  const celsius = toCelsius(value, fromUnit.value);
-  const converted = fromCelsius(celsius, toUnit.value);
-  tempResult.className = 'result';
-  tempResult.textContent = `${value} ${unitNames[fromUnit.value]} equivale a ${converted.toFixed(2)} ${unitNames[toUnit.value]}`;
+btnConvertir.addEventListener('click', () => {
+  const valor = parseFloat(valorTemp.value);
+  const celsius = aCelsius(valor, unidadOrigen.value);
+  const convertido = desdeCelsius(celsius, unidadDestino.value);
+  resultadoTemp.className = 'result';
+  resultadoTemp.textContent = `${valor} ${nombresUnidades[unidadOrigen.value]} equivale a ${convertido.toFixed(2)} ${nombresUnidades[unidadDestino.value]}`;
 });

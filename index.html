@@ -13,59 +13,56 @@
 </header>
 
 <nav>
-  <button class="nav-btn active" data-target="age">Calculadora de edad</button>
-  <button class="nav-btn" data-target="temp">Convertidor de temperatura</button>
-  <button class="nav-btn" data-target="tasks">Gestor de tareas</button>
+  <button class="nav-btn active" data-destino="edad">Calculadora de edad</button>
+  <button class="nav-btn" data-destino="temperatura">Convertidor de temperatura</button>
+  <button class="nav-btn" data-destino="tareas">Gestor de tareas</button>
 </nav>
 
 <main>
 
-  <section id="age" class="section active">
+  <section id="edad" class="section active">
     <h2>Calculadora de edad</h2>
     <label>Ingresa tu fecha de nacimiento:</label>
     <div class="date-row">
-      <select id="day"></select>
-      <select id="month"></select>
-      <select id="year"></select>
+      <select id="dia"></select>
+      <select id="mes"></select>
+      <select id="anio"></select>
     </div>
-    <button class="action" id="ageBtn">Calcular</button>
-    <div id="ageResult"></div>
-    <h3>Ugalde Zarza Marcos Jesús IDGS - 91 09/07/2026</h3>
+    <button class="action" id="btnCalcularEdad">Calcular</button>
+    <div id="resultadoEdad"></div>
   </section>
 
-  <section id="temp" class="section">
+  <section id="temperatura" class="section">
     <h2>Convertidor de temperatura</h2>
     <label>Ingresa la temperatura, selecciona las unidades y pulsa convertir</label>
-    <input type="number" id="tempValue" placeholder="0.00">
+    <input type="number" id="valorTemp" placeholder="0.00">
     <label>Unidad de origen</label>
-    <select id="fromUnit">
+    <select id="unidadOrigen">
       <option value="">Selecciona</option>
       <option value="C">Celsius</option>
       <option value="F">Fahrenheit</option>
       <option value="K">Kelvin</option>
     </select>
     <label>Unidad de destino</label>
-    <select id="toUnit">
+    <select id="unidadDestino">
       <option value="">Selecciona</option>
       <option value="C">Celsius</option>
       <option value="F">Fahrenheit</option>
       <option value="K">Kelvin</option>
     </select>
-    <button class="action" id="convertBtn" disabled>Convertir</button>
-    <div id="tempResult"></div>
-    <h3>Ugalde Zarza Marcos Jesús IDGS - 91 09/07/2026</h3>
+    <button class="action" id="btnConvertir" disabled>Convertir</button>
+    <div id="resultadoTemp"></div>
   </section>
 
-  <section id="tasks" class="section">
+  <section id="tareas" class="section">
     <h2>Gestor de tareas</h2>
     <div class="task-input-row">
-      <input type="text" id="taskInput" placeholder="Escribe y presiona Enter para crear una tarea">
-      <button id="addTaskBtn">Agregar</button>
+      <input type="text" id="entradaTarea" placeholder="Escribe y presiona Enter para crear una tarea">
+      <button id="btnAgregarTarea">Agregar</button>
     </div>
-    <ul id="taskList"></ul>
-    <h3>Ugalde Zarza Marcos Jesús IDGS - 91 09/07/2026</h3>
+    <ul id="listaTareas"></ul>
   </section>
-  
+
 </main>
 
 <script src="js/nav.js"></script>

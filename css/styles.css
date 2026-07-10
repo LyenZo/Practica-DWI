@@ -93,20 +93,20 @@ button.action:not(:disabled):hover { background: #1d4ed8; }
   border-radius: 8px;
   cursor: pointer;
 }
-ul#taskList { list-style: none; margin-top: 1rem; }
-ul#taskList li {
+ul#listaTareas { list-style: none; margin-top: 1rem; }
+ul#listaTareas li {
   display: flex;
   align-items: center;
   gap: 0.7rem;
   padding: 0.7rem 0.3rem;
   border-bottom: 1px solid #e5e7eb;
 }
-ul#taskList li span { flex: 1; }
-ul#taskList li.completed span {
+ul#listaTareas li span { flex: 1; }
+ul#listaTareas li.completada span {
   text-decoration: line-through;
   color: #9ca3af;
 }
-ul#taskList li button.delete {
+ul#listaTareas li button.eliminar {
   background: none;
   border: none;
   color: #dc2626;
